@@ -2,6 +2,8 @@
 
 We will learn how use [Sinatra](http://sinatrarb.com/) for create API and the non relational batabase MongoDB under Linux.
 
+Read this document in [Italian](https://github.com/davfaz70/sinatra-myapp/blob/master/Readme.it.md)
+
 
 ## Getting Started
 
@@ -96,7 +98,7 @@ you obtain all existing database on your computer, for our experiment use the da
  use test
 ```
 
-Now we put into this db a new post
+Now we put into this db a new post:
 
 ```
  db.test.insert( {title: “shell”, body: “testing”} )
@@ -108,18 +110,18 @@ We have just created a new post with two attributes, title and body. Let's try n
  db.test.find()
 ```
 
-Now we can see the first twenty result of all elements in our db, (if you want to see more results, you must enter it)
+Now we can see the first twenty result of all elements in our db, (if you want to see more results, you must enter **it**)
 In our case this should be the result:
 
 ```
 { "_id" : ObjectId("5a855f6ee421e31fb1c531e1"), "title" : "shell", "body" : "testing" }
 ```
 
-Obviously your ‘_id’ field should be different.
+Obviously your \_id field should be different.
 If we want to use only this post, we must find it uniquely, let’s go to copy the id and enter:
 
 ```
- db.test.find({"_id" : ObjectId("**5a855f6ee421e31fb1c531e1**")})
+ db.test.find({"_id" : ObjectId("5a855f6ee421e31fb1c531e1")})
 ```
 
 We found it! Obviously we can search a post with other parameters, such as title. Example:
@@ -169,16 +171,14 @@ end
 
 This code configures the app saying that the DBMS is mongodb and the database is test.
 
-Now create a new folder into myapp directory and let’s call it ‘views’, into this folder we create four files:
+Now create a new folder into myapp directory and let’s call it ‘views’, into this folder we create four files with .erb extension:
 
 * index.erb
 * new.erb
 * edit.erb
 * show.erb
 
-_(.erb is the extension, not a part of name)._
-
-At the moment leave these files empty and write code that help us for not repeat the same code more times into **myapp.rb**:
+At the moment leave these files empty and write code that help us for not repeat the same code more times into **myapp.rb:**
 
 ```
 helpers do
@@ -206,6 +206,8 @@ end
 here we have defined the method object_id because as we saw in the shell of mongo to find an object through its id not only the simple string is enough, but must be preceded by a method called ObjectId, here we have simplified all the processes enclosing them inside a method.
 
 ### Write the methods
+
+**myapp.rb:**
 
 ```
 get '/' do
@@ -352,7 +354,7 @@ end
               <input type='txt' name='body' value="<%=@post['body']%>" id='body' />
 <br>
 <br>
-      <button type='submit' class='btn btn-primary'>Conferma!</button>
+      <button type='submit' class='btn btn-primary'>Confirm!</button>
     </form>
 </div>
 ```
@@ -448,16 +450,11 @@ localhost:4567/api/v1/post/<the_id_you_copied>
 
 **Now you try!**
 
-
-## Deployment
-
-
-
 ## Built With
 
 * [Recipes of Sinatra](http://recipes.sinatrarb.com/p/databases/mongo) - The inspiration
 * [Sinatra](http://sinatrarb.com/) - The library
-* [Mongodb](https://docs.mongodb.com/getting-started/shell/update/) - The database
+* [Mongodb](https://docs.mongodb.com/getting-started/shell/update/) - The DBMS
 
 ## Contributing
 
