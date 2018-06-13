@@ -1,0 +1,15 @@
+<div align="center">
+  <h3> <%= @post["title"] %> </h3>
+  <br>
+  <%= @post["body"] %>
+  <br>
+</div>
+<br> <br>
+<a href="/new"> Nuovo post </a>
+<br> <br>
+<a href="/edit/<%=@id%>"> Modifica </a>
+<br> <br>
+ <form action="/post/<%=@id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit">Elimina </button>
+  </form>

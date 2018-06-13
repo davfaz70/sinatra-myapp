@@ -1,0 +1,14 @@
+<div align="center">
+<form action="/update/<%=@post['_id']['$oid']%>" method='post'>
+<input type="hidden" name="_method" value="put">
+            <label> Titolo <label/>
+              <input type='txt' name='title' value="<%=@post['title']%>" id='title' />
+                  <br>
+                  <br>
+            <label> Testo <label/>
+              <input type='txt' name='body' value="<%=@post['body']%>" id='body' />
+<br>
+<br>
+      <button type='submit' class='btn btn-primary'>Conferma!</button>
+    </form>
+</div>

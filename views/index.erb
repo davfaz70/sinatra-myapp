@@ -1,0 +1,12 @@
+
+<% @posts.each do |post| %>
+<div align="center">
+  <%= post["title"] %>
+  <br>
+  <%= post["body"] %>
+  <br>
+  <a href="/show/<%= post['_id']['$oid'] %>"> Show </a> <%= " " + " " + " " %> <a href="/edit/<%= post['_id']['$oid'] %>"> Edit </a>
+<hr>
+<% end %>
+<a href="/new"> New post </a>
+</div>

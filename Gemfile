@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem 'sinatra',            '2.0.0'
+gem 'dm-sqlite-adapter',  '1.2.0'
+gem 'json',               '1.8.6'
+gem 'shotgun',            '0.9.2'
+gem 'slim',               '3.0.8'
+gem 'thin',               '1.7.0'
+gem 'mongo'
+gem 'bson_ext'
+gem 'sinatra-namespace', '~> 1.0'
+gem 'sinatra-reloader', '~> 1.0'
