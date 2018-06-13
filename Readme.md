@@ -1,7 +1,7 @@
 # COMPLETE TUTORIAL FOR CREATE API IN SINATRA APP USING MONGODB
 
-We will learn how use Sinatra for create API and the non relational batabase MongoDB
-[Sinatra](http://sinatrarb.com/)
+We will learn how use [Sinatra](http://sinatrarb.com/) for create API and the non relational batabase MongoDB under Linux.
+
 
 ## Getting Started
 
@@ -20,8 +20,8 @@ This is the code that you must to put in files:
 ```
 source 'https://rubygems.org'
 
-gem 'sinatra', 
-gem 'json', 
+gem 'sinatra',
+gem 'json',
 gem 'shotgun',
 gem 'slim',
 gem 'thin',
@@ -43,8 +43,11 @@ Bundler.require
 require './app'
 run Myapp
 
+```
+
 **myapp/myapp.rb:**
 
+```
 require 'sinatra'
 require 'mongo'
 require 'json/ext' # required for .to_json
@@ -90,7 +93,7 @@ you see a list of available commands, let’s go to test this command:
 you obtain all existing database on your computer, for our experiment use the database ‘test’ with the following command:
 
 ```
- use test 
+ use test
 ```
 
 Now we put into this db a new post
@@ -151,7 +154,7 @@ After this little training with mongodb commands we are ready to write the code 
  exit
 ```
 
-or going to the other tab in our terminal. 
+or going to the other tab in our terminal.
 
 ### Configuration
 
@@ -164,14 +167,14 @@ configure do
 end
 ```
 
-This code configures the app saying that the DBMS is mongodb and the database is test. 
+This code configures the app saying that the DBMS is mongodb and the database is test.
 
-Now create a new folder into myapp directory and let’s call it ‘views’, into this folder we create four files: 
+Now create a new folder into myapp directory and let’s call it ‘views’, into this folder we create four files:
 
 * index.erb
 * new.erb
 * edit.erb
-* show.erb 
+* show.erb
 
 _(.erb is the extension, not a part of name)._
 
@@ -188,12 +191,12 @@ helpers do
     end
   end
 
-  def post\_by\_id id
+  def post_by_id id
     id = object_id(id) if String === id
     if id.nil?
       {}.to_json
     else
-      post = settings.mongo\_db.find(\_id: id).to_a.first
+      post = settings.mongo_db.find(_id: id).to_a.first
       (post || {}).to_json
     end
   end
@@ -202,7 +205,7 @@ end
 
 here we have defined the method object_id because as we saw in the shell of mongo to find an object through its id not only the simple string is enough, but must be preceded by a method called ObjectId, here we have simplified all the processes enclosing them inside a method.
 
-#### Write the methods
+### Write the methods
 
 ```
 get '/' do
@@ -274,7 +277,7 @@ At the end it contains a **redirect to**, we must therefore declare the show act
 ```
 get '/show/:id' do |id|
   @id = id
-  post = post\_by\_id(id)
+  post = post_by_id(id)
   @post = JSON.parse(post)
   erb :show
 end
@@ -309,7 +312,7 @@ delete '/post/:id' do |id|
   id = object_id(id)
   post = db.find(:_id => id)
   if !post.to_a.first.nil?
-    post.find\_one\_and\_delete
+    post.find_one_and_delete
   end
   redirect to("/")
 end
@@ -321,7 +324,7 @@ At this point write the instruction for update the post:
 
 ```
 get '/edit/:id' do |id|
-  post = post\_by\_id(id)
+  post = post_by_id(id)
   @post = JSON.parse(post)
   erb :edit
 end
@@ -329,10 +332,10 @@ end
 put '/update/:id/?' do
   @id = params[:id]
   id = object_id(params[:id])
-  settings.mongo\_db.find(:_id => id).
-    find\_one\_and_update('$set' => request.params)
+  settings.mongo_db.find(:_id => id).
+    find_one_and_update('$set' => request.params)
   redirect to("/show/#{@id}")
-end 
+end
 ```
 
 **views/edit.erb:**
@@ -374,23 +377,23 @@ namespace '/api/v1' do
     content_type :json
     db = settings.mongo_db
     result = db.insert_one params
-    db.find(:\_id => result.inserted\_id).to\_a.first.to_json
+    db.find(:_id => result.inserted_id).to_a.first.to_json
   end
 
   get '/collections/?' do
     content_type :json
-    settings.mongo\_db.database.collection\_names.to_json
+    settings.mongo_db.database.collection_names.to_json
   end
 
 
   get '/posts/?' do
     content_type :json
-    settings.mongo\_db.find.to\_a.to_json
+    settings.mongo_db.find.to_a.to_json
   end
 
   get '/post/:id/?' do
     content_type :json
-    post\_by\_id(params[:id])
+    post_by_id(params[:id])
   end
 
   # update the post specified by :id, setting its
@@ -398,9 +401,9 @@ namespace '/api/v1' do
   get '/update/:id/?' do
     content_type :json
     id = object_id(params[:id])
-    settings.mongo\_db.find(:_id => id).
-      find\_one\_and\_update('$set' => request.params)
-    post\_by_id(id)
+    settings.mongo_db.find(:_id => id).
+      find_one_and_update('$set' => request.params)
+    post_by_id(id)
   end
 
   # update the post specified by :id, setting just its
@@ -410,9 +413,9 @@ namespace '/api/v1' do
     content_type :json
     id   = object_id(params[:id])
     title = params[:title]
-    settings.mongo\_db.find(:_id => id).
-      find\_one\_and_update('$set' => {:title => title})
-    post\_by_id(id)
+    settings.mongo_db.find(:_id => id).
+      find_one_and_update('$set' => {:title => title})
+    post_by_id(id)
   end
 
   # delete the specified post and return success
@@ -437,9 +440,11 @@ These methods are taken from [recipes of sinatra](http://recipes.sinatrarb.com/p
 localhost:4567/api/v1/posts
 ```
 
-try to copy any id and write 
+try to copy any id and write
 
-localhost:4567/api/v1/post/<\the\_id\_you_copied\>
+```
+localhost:4567/api/v1/post/<the_id_you_copied>
+```
 
 **Now you try!**
 
@@ -462,6 +467,3 @@ Check [here](https://github.com/davfaz70/sinatra-myapp/graphs/contributors)
 ## Authors
 
 * **Davide Fazio** - *Initial work* - [DavFaz70](https://github.com/davfaz70)
-
-
-
