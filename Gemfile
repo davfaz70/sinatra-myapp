@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sinatra',            '2.0.0'
+gem 'sinatra'
 gem 'dm-sqlite-adapter',  '1.2.0'
 gem 'json',               '1.8.6'
 gem 'shotgun',            '0.9.2'
