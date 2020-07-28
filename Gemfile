@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'dm-sqlite-adapter',  '1.2.0'
-gem 'json',               '1.8.6'
+gem 'json',               '2.3.0'
 gem 'shotgun',            '0.9.2'
 gem 'slim',               '3.0.8'
 gem 'thin',               '1.7.0'
