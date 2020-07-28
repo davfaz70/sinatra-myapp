@@ -20,7 +20,7 @@ GEM
     do_sqlite3 (0.10.17)
       data_objects (= 0.10.17)
     eventmachine (1.2.7)
-    json (1.8.6)
+    json (2.3.0)
     mongo (2.10.0)
       bson (>= 4.4.2, < 5.0.0)
     multi_json (1.13.1)
@@ -63,7 +63,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   dm-sqlite-adapter (= 1.2.0)
-  json (= 1.8.6)
+  json (= 2.3.0)
   mongo
   shotgun (= 0.9.2)
   sinatra
